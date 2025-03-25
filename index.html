@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Árvore da Prosperidade - Direcionamento Divino</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script>
+    <style>
+        :root {
+            --gold: #FFD700;
+            --light-gold: rgba(255, 215, 0, 0.7);
+            --dark-gold: #D4AF37;
+            --green: #006400;
+            --light-green: #228B22;
+            --white: #FFFFFF;
+            --black: #333333;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #000428, #004e92);
+            color: var(--white);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        
+        .gold-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .gold-drop {
+            position: absolute;
+            width: 2px;
+            height: 20px;
+            background: linear-gradient(to bottom, transparent, var(--gold));
+            animation: rain linear infinite;
+            opacity: 0.7;
+        }
+        
+        @keyframes rain {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+            text-shadow: 0 0 10px var(--light-gold);
+            animation: glow 2s infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px var(--light-gold);
+            }
+            to {
+                text-shadow: 0 0 20px var(--gold), 0 0 30px var(--dark-gold);
+            }
+        }
+        
+        .tree-container {
+            position: relative;
+            margin: 2rem 0;
+            height: 400px;
+        }
+        
+        .prosperity-tree {
+            width: 300px;
+            height: 400px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 200"><path d="M50 200 L45 150 Q50 140 55 150 L50 200 M50 150 L40 100 Q50 80 60 100 L50 150 M50 100 L35 50 Q50 20 65 50 L50 100" fill="none" stroke="%23D4AF37" stroke-width="2"/></svg>') no-repeat center center;
+            background-size: contain;
+            margin: 0 auto;
+            position: relative;
+            animation: sway 8s infinite alternate ease-in-out;
+        }
+        
+        @keyframes sway {
+            0% {
+                transform: rotate(-2deg);
+            }
+            100% {
+                transform: rotate(2deg);
+            }
+        }
+        
+        .leaf {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: var(--light-green);
+            border-radius: 50% 0 50% 50%;
+            transform: rotate(45deg);
+            animation: pulse 3s infinite alternate;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: rotate(45deg) scale(1);
+                box-shadow: 0 0 0 var(--light-green);
+            }
+            100% {
+                transform: rotate(45deg) scale(1.2);
+                box-shadow: 0 0 10px var(--green);
+            }
+        }
+        
+        .fruit {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: shine 2s infinite alternate;
+        }
+        
+        @keyframes shine {
+            0% {
+                box-shadow: 0 0 5px var(--light-gold);
+            }
+            100% {
+                box-shadow: 0 0 15px var(--gold), 0 0 20px var(--dark-gold);
+            }
+        }
+        
+        .message-box {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid var(--gold);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .message-box::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 1px solid var(--light-gold);
+            border-radius: 12px;
+            animation: borderPulse 4s infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes borderPulse {
+            0% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.02);
+            }
+            100% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+        }
+        
+        .bible-verse {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            color: var(--gold);
+            font-style: italic;
+        }
+        
+        .reference {
+            display: block;
+            margin-top: 1rem;
+            font-size: 1rem;
+            color: var(--white);
+        }
+        
+        .search-box {
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .search-input {
+            padding: 0.8rem 1rem;
+            font-size: 1rem;
+            border: 1px solid var(--gold);
+            border-radius: 25px 0 0 25px;
+            background: rgba(0, 0, 0, 0.5);
+            color: var(--white);
+            width: 70%;
+            max-width: 500px;
+        }
+        
+        .search-button {
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            background: linear-gradient(to right, var(--dark-gold), var(--gold));
+            color: var(--black);
+            border: none;
+            border-radius: 0 25px 25px 0;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .search-button:hover {
+            background: linear-gradient(to right, var(--gold), var(--light-gold));
+            transform: scale(1.05);
+        }
+        
+        .generate-button {
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            background: linear-gradient(to right, var(--green), var(--light-green));
+            color: var(--white);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .generate-button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+        }
+        
+        .generate-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .generate-button:hover::before {
+            left: 100%;
+        }
+        
+        .footer {
+            margin-top: auto;
+            padding: 1rem;
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--gold);
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            animation: footerGlow 3s infinite alternate;
+        }
+        
+        @keyframes footerGlow {
+            0% {
+                text-shadow: 0 0 5px var(--light-gold);
+            }
+            100% {
+                text-shadow: 0 0 15px var(--gold), 0 0 20px var(--dark-gold);
+            }
+        }
+        
+        .heaven-light {
+            position: fixed;
+            top: -50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150vw;
+            height: 150vh;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, rgba(0, 78, 146, 0) 70%);
+            pointer-events: none;
+            z-index: 0;
+            animation: lightPulse 8s infinite alternate;
+        }
+        
+        @keyframes lightPulse {
+            0% {
+                opacity: 0.3;
+            }
+            100% {
+                opacity: 0.7;
+            }
+        }
+        
+        .loading {
+            display: none;
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 215, 0, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--gold);
+            animation: spin 1s ease-in-out infinite;
+            margin: 1rem auto;
+        }
+        
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .bible-verse {
+                font-size: 1.2rem;
+            }
+            
+            .search-input {
+                width: 60%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="gold-rain" id="goldRain"></div>
+    <div class="heaven-light"></div>
+    
+    <div class="container">
+        <h1>Árvore da Prosperidade</h1>
+        <p style="font-size: 1.2rem; margin-bottom: 2rem;">Receba seu direcionamento divino hoje</p>
+        
+        <div class="tree-container">
+            <div class="prosperity-tree" id="prosperityTree"></div>
+        </div>
+        
+        <button class="generate-button" id="generateVerse">Gerar Versículo Inspirador</button>
+        
+        <div class="message-box">
+            <div id="verseContainer">
+                <p class="bible-verse">Clique no botão acima para receber seu versículo inspirador</p>
+                <span class="reference" id="verseReference"></span>
+            </div>
+            <div class="loading" id="loading"></div>
+        </div>
+        
+        <div class="search-box">
+            <input type="text" class="search-input" id="searchInput" placeholder="Busque por um tema (ex: fé, esperança, amor)...">
+            <button class="search-button" id="searchButton">Buscar</button>
+        </div>
+    </div>
+    
+    <div class="footer">Deus é contigo!</div>
+    
+    <script>
+        // Cria chuva de ouro
+        function createGoldRain() {
+            const goldRain = document.getElementById('goldRain');
+            const dropsCount = 50;
+            
+            for (let i = 0; i < dropsCount; i++) {
+                const drop = document.createElement('div');
+                drop.classList.add('gold-drop');
+                drop.style.left = `${Math.random() * 100}%`;
+                drop.style.top = `${Math.random() * -100}px`;
+                drop.style.animationDuration = `${5 + Math.random() * 10}s`;
+                drop.style.animationDelay = `${Math.random() * 5}s`;
+                goldRain.appendChild(drop);
+            }
+        }
+        
+        // Cria folhas e frutos na árvore
+        function createTreeElements() {
+            const tree = document.getElementById('prosperityTree');
+            const leavesCount = 20;
+            const fruitsCount = 10;
+            
+            // Folhas
+            for (let i = 0; i < leavesCount; i++) {
+                const leaf = document.createElement('div');
+                leaf.classList.add('leaf');
+                leaf.style.left = `${40 + Math.random() * 20}%`;
+                leaf.style.top = `${20 + Math.random() * 70}%`;
+                leaf.style.animationDelay = `${Math.random() * 3}s`;
+                leaf.style.opacity = `${0.5 + Math.random() * 0.5}`;
+                tree.appendChild(leaf);
+            }
+            
+            // Frutos
+            for (let i = 0; i < fruitsCount; i++) {
+                const fruit = document.createElement('div');
+                fruit.classList.add('fruit');
+                fruit.style.left = `${40 + Math.random() * 20}%`;
+                fruit.style.top = `${30 + Math.random() * 60}%`;
+                fruit.style.animationDelay = `${Math.random() * 2}s`;
+                tree.appendChild(fruit);
+            }
+        }
+        
+        // Versículos bíblicos pré-definidos
+        const bibleVerses = [
+            {
+                verse: "Porque eu bem sei os pensamentos que tenho a vosso respeito, diz o Senhor; pensamentos de paz, e não de mal, para vos dar o fim que esperais.",
+                reference: "Jeremias 29:11"
+            },
+            {
+                verse: "Mas os que esperam no Senhor renovarão as suas forças; subirão com asas como águias; correrão, e não se cansarão; andarão, e não se fatigarão.",
+                reference: "Isaías 40:31"
+            },
+            {
+                verse: "O Senhor é o meu pastor, nada me faltará.",
+                reference: "Salmos 23:1"
+            },
+            {
+                verse: "Tudo posso naquele que me fortalece.",
+                reference: "Filipenses 4:13"
+            },
+            {
+                verse: "Entrega o teu caminho ao Senhor; confia nele, e ele tudo fará.",
+                reference: "Salmos 37:5"
+            },
+            {
+                verse: "Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna.",
+                reference: "João 3:16"
+            },
+            {
+                verse: "O meu Deus, segundo as suas riquezas, suprirá todas as vossas necessidades em glória, por Cristo Jesus.",
+                reference: "Filipenses 4:19"
+            },
+            {
+                verse: "Mas, como está escrito: As coisas que o olho não viu, e o ouvido não ouviu, e não subiram ao coração do homem, são as que Deus preparou para os que o amam.",
+                reference: "1 Coríntios 2:9"
+            }
+        ];
+        
+        // Gera um versículo aleatório
+        function generateRandomVerse() {
+            const randomIndex = Math.floor(Math.random() * bibleVerses.length);
+            const verse = bibleVerses[randomIndex];
+            
+            document.getElementById('verseContainer').style.display = 'none';
+            document.getElementById('loading').style.display = 'block';
+            
+            // Simula um tempo de carregamento
+            setTimeout(() => {
+                document.getElementById('verseContainer').innerHTML = `
+                    <p class="bible-verse">${verse.verse}</p>
+                    <span class="reference">${verse.reference}</span>
+                `;
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('verseContainer').style.display = 'block';
+                
+                // Efeito de digitação
+                const verseElement = document.querySelector('.bible-verse');
+                const referenceElement = document.querySelector('.reference');
+                
+                verseElement.style.opacity = 0;
+                referenceElement.style.opacity = 0;
+                
+                setTimeout(() => {
+                    verseElement.style.transition = 'opacity 1s ease';
+                    referenceElement.style.transition = 'opacity 1s ease';
+                    verseElement.style.opacity = 1;
+                    referenceElement.style.opacity = 1;
+                }, 100);
+            }, 1500);
+        }
+        
+        // Busca versículos no Google
+        function searchVerses() {
+            const searchTerm = document.getElementById('searchInput').value.trim();
+            
+            if (searchTerm) {
+                document.getElementById('verseContainer').style.display = 'none';
+                document.getElementById('loading').style.display = 'block';
+                
+                // Simula uma busca (na implementação real, você usaria uma API)
+                setTimeout(() => {
+                    const encodedTerm = encodeURIComponent(`versículo bíblico sobre ${searchTerm}`);
+                    window.open(`https://www.google.com/search?q=${encodedTerm}`, '_blank');
+                    
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('verseContainer').style.display = 'block';
+                    document.getElementById('verseContainer').innerHTML = `
+                        <p class="bible-verse">Sua busca por "${searchTerm}" foi realizada. Verifique os resultados na nova aba.</p>
+                        <span class="reference">Deus te abençoe em sua busca!</span>
+                    `;
+                }, 1000);
+            } else {
+                alert("Por favor, digite um tema para buscar.");
+            }
+        }
+        
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', () => {
+            createGoldRain();
+            createTreeElements();
+            
+            // Event listeners
+            document.getElementById('generateVerse').addEventListener('click', generateRandomVerse);
+            document.getElementById('searchButton').addEventListener('click', searchVerses);
+            
+            // Permite buscar com Enter
+            document.getElementById('searchInput').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    searchVerses();
+                }
+            });
+            
+            // Efeito de digitação no título
+            new TypeIt('#verseContainer .bible-verse', {
+                strings: ["Clique no botão acima para receber seu versículo inspirador"],
+                speed: 50,
+                waitUntilVisible: true
+            }).go();
+        });
+    </script>
+</body>
+</html>
